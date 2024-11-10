@@ -13,7 +13,7 @@
     <title>My Simple Webpage</title>
     <style>
       /* Basic styling for the slider */
-      .slider {
+      .slider-container {
         width: 100%;
         max-width: 600px;
         position: relative;
@@ -26,14 +26,15 @@
         transition: transform 0.5s ease-in-out;
       }
 
-      .slide {
+      .slide-item {
         min-width: 100%;
         box-sizing: border-box;
       }
 
       /* Next and Previous buttons */
-      .prev,
-      .next {
+      .slider-btn,
+      .slider-btn--prev,
+      .slider-btn--next {
         cursor: pointer;
         position: absolute;
         top: 50%;
@@ -47,66 +48,163 @@
         user-select: none;
       }
 
-      .next {
+      .slider-btn--next {
         right: 0;
         border-radius: 3px 0 0 3px;
+      }
+
+      /* Content section styling */
+      .content-section {
+        padding: 40px 20px;
+        background-color: #f4f4f4;
+        margin-bottom: 20px;
+      }
+
+      .section-title {
+        text-align: center;
+        font-size: 2em;
+        margin-bottom: 20px;
+      }
+
+      .section-content {
+        text-align: center;
+        font-size: 1.2em;
+      }
+
+      .projects-list,
+      .skills-list {
+        list-style-type: none;
+        padding: 0;
+      }
+
+      .projects-item,
+      .skills-item {
+        margin: 10px 0;
+        font-size: 1.1em;
+      }
+
+      /* Contact form styling */
+      .contact-form input,
+      .contact-form textarea {
+        width: 100%;
+        padding: 12px;
+        margin: 8px 0;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+
+      .contact-form button {
+        padding: 12px 20px;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      .contact-form button:hover {
+        background-color: #45a049;
       }
     </style>
   </head>
   <body>
     <!-- Header Section -->
-    <header>
-      <h1>Welcome to My Webpage</h1>
-      <p>This is a basic HTML webpage structure.</p>
+    <header class="header">
+      <h1 class="header-title">Welcome to My Webpage</h1>
+      <p class="header-description">This is a basic HTML webpage structure.</p>
     </header>
 
     <!-- Image Slider Section -->
-    <div class="slider">
-      <div class="slides">
-        <img
-          src="images/image_!.jpg"
-          class="slide"
-          alt="Image 1"
-        />
-        <img
-          src="images/image_2.jpg"
-          class="slide"
-          alt="Image 2"
-        />
-        <img
-          src="images/image_3.jpg"
-          class="slide"
-          alt="Image 3"
-        />
+    <section class="slider-section">
+      <div class="slider-container">
+        <div class="slides">
+          <img
+            src="images/image_!.jpg"
+            class="slide-item"
+            alt="Image 1"
+          />
+          <img
+            src="images/image_2.jpg"
+            class="slide-item"
+            alt="Image 2"
+          />
+          <img
+            src="images/image_3.jpg"
+            class="slide-item"
+            alt="Image 3"
+          />
+        </div>
+        <a
+          class="slider-btn slider-btn--prev"
+          onclick="plusSlides(-1)"
+          >&#10094;</a
+        >
+        <a
+          class="slider-btn slider-btn--next"
+          onclick="plusSlides(1)"
+          >&#10095;</a
+        >
       </div>
-      <a
-        class="prev"
-        onclick="plusSlides(-1)"
-        >&#10094;</a
-      >
-      <a
-        class="next"
-        onclick="plusSlides(1)"
-        >&#10095;</a
-      >
-    </div>
+    </section>
 
-    <!-- Main Content Section -->
-    <main>
-      <h2>About Me</h2>
-      <p>Hello! I am learning how to create a simple webpage using HTML.</p>
+    <!-- About Me Section -->
+    <section class="content-section about-section">
+      <h2 class="section-title">About Me</h2>
+      <p class="section-content">
+        Hello! I am learning how to create a simple webpage using HTML.
+      </p>
+    </section>
 
-      <h2>My Hobbies</h2>
-      <ul>
-        <li>Reading</li>
-        <li>Coding</li>
-        <li>Traveling</li>
+    <!-- Skills Section -->
+    <section class="content-section skills-section">
+      <h2 class="section-title">My Skills</h2>
+      <ul class="skills-list">
+        <li class="skills-item">HTML</li>
+        <li class="skills-item">CSS</li>
+        <li class="skills-item">JavaScript</li>
+        <li class="skills-item">Python</li>
       </ul>
-    </main>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="content-section projects-section">
+      <h2 class="section-title">My Projects</h2>
+      <ul class="projects-list">
+        <li class="projects-item">Project 1: Personal Portfolio</li>
+        <li class="projects-item">Project 2: Web Application</li>
+        <li class="projects-item">Project 3: Blogging Platform</li>
+      </ul>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="content-section contact-section">
+      <h2 class="section-title">Contact Me</h2>
+      <form class="contact-form">
+        <input
+          type="text"
+          name="name"
+          placeholder="Your Name"
+          required
+        />
+        <input
+          type="email"
+          name="email"
+          placeholder="Your Email"
+          required
+        />
+        <textarea
+          name="message"
+          placeholder="Your Message"
+          rows="4"
+          required
+        ></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+    </section>
 
     <!-- Footer Section -->
-    <footer>
-      <p>&copy; 2024 My Simple Webpage</p>
+    <footer class="footer">
+      <p class="footer-text">&copy; 2024 My Simple Webpage</p>
     </footer>
 
     <!-- JavaScript for Slider Functionality -->
@@ -119,7 +217,7 @@
       }
 
       function showSlides(n) {
-        const slides = document.getElementsByClassName('slide');
+        const slides = document.getElementsByClassName('slide-item');
         if (n >= slides.length) {
           slideIndex = 0;
         }
